@@ -1,0 +1,12 @@
+# artifacts
+build
+dist
+coverage
+
+# Frontend files
+**/postgres-data
+
+.gitignore
+.prettierignore
+
+pnpm-lock.yaml
