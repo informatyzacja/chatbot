@@ -25,7 +25,7 @@
   "packageManager": "pnpm@8.6.7",
   "repository": {
     "type": "git",
-    "url": "https://github.com/informatyzacja/chatbot2.git"
+    "url": "https://github.com/informatyzacja/chatbot.git"
   },
   "author": {
     "name": "Michał Korczak",
@@ -42,9 +42,9 @@
   ],
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/informatyzacja/chatbot2/issues"
+    "url": "https://github.com/informatyzacja/chatbot/issues"
   },
-  "homepage": "https://github.com/informatyzacja/chatbot2#readme",
+  "homepage": "https://github.com/informatyzacja/chatbot#readme",
   "dependencies": {
     "@chakra-ui/react": "^2.7.1",
     "@emotion/react": "^11.11.1",
