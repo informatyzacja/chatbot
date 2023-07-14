@@ -4,15 +4,15 @@ services:
   postgres:
     restart: always
     image: postgres:15-alpine
+    container_name: database
     environment:
-      - POSTGRES_DB=postgres
-      - POSTGRES_USER=postgres
-      - POSTGRES_PASSWORD=postgres
-      - DATABASE_FOLDER=${DATABASE_FOLDER}
+      - POSTGRES_USER=${POSTGRES_USER}
+      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
+      - POSTGRES_DB=${POSTGRES_DB}
     ports:
       - '5432:5432'
     volumes:
-      - $DATABASE_FOLDER:/var/lib/postgresql/data
+      - postgres:/var/lib/postgresql/data
 
 volumes:
   postgres:
