@@ -4,9 +4,15 @@ dist
 coverage
 
 # Frontend files
+.next
+
 **/postgres-data
+
+*.d.ts
 
 .gitignore
 .prettierignore
+.eslintrc.cjs
 
 pnpm-lock.yaml
+pnpm-workspace.yaml
