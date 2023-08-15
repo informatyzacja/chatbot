@@ -41,7 +41,8 @@ function verifyRequestSignature(signature: string, data: string): boolean {
 
 //eslint-disable-next-line @typescript-eslint/no-explicit-any
 function handleMessage(data: any, signature: string, res: NextApiResponse) {
-  if (!verifyRequestSignature(signature, data as string)) {
+  //eslint-disable-next-line @typescript-eslint/no-unsafe-argument
+  if (!verifyRequestSignature(signature, data.toString())) {
     res.status(200).send('Invalid signature');
     return;
   }
