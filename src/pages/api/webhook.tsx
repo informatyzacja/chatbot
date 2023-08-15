@@ -1,6 +1,6 @@
 import type { NextApiRequest, NextApiResponse } from 'next';
 
-export default function handler(req: NextApiRequest, res: NextApiResponse) {
+function handleVerificationRequest(req: NextApiRequest, res: NextApiResponse) {
   const mode = req.query['hub.mode'];
   const token = req.query['hub.verify_token'];
   const challenge = req.query['hub.challenge'];
@@ -11,5 +11,18 @@ export default function handler(req: NextApiRequest, res: NextApiResponse) {
     } else {
       res.status(403).send('');
     }
+  }
+}
+
+export default function handler(req: NextApiRequest, res: NextApiResponse) {
+  switch (req.method) {
+    case 'GET': {
+      handleVerificationRequest(req, res);
+      break;
+    }
+    case 'POST':
+      break;
+    default:
+      res.status(200).send('');
   }
 }
