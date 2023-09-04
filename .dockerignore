@@ -1,2 +1,10 @@
-node_modules
-postgres-data
+.dockerignore
+.env
+.git
+
+**/Dockerfile
+
+**/node_modules
+**/pnpm-debug.log
+
+.next

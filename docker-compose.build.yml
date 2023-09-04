@@ -1,0 +1,12 @@
+version: '3.9'
+
+services:
+  admin:
+    build:
+      context: .
+      dockerfile: ./apps/admin/Dockerfile
+
+  prisma-studio:
+    build:
+      context: .
+      dockerfile: ./packages/db/Dockerfile

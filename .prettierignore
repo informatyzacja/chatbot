@@ -2,9 +2,9 @@
 build
 dist
 coverage
-
-# Frontend files
 .next
+
+prisma/generated/zod/index.ts
 
 **/postgres-data
 
@@ -12,7 +12,7 @@ coverage
 
 .gitignore
 .prettierignore
-.eslintrc.cjs
+.eslintrc.js
 
 pnpm-lock.yaml
 pnpm-workspace.yaml

@@ -1,0 +1,56 @@
+name: CI
+
+on:
+  pull_request:
+    branches: ['*']
+  push:
+    branches: ['main']
+  merge_group:
+
+env:
+  DATABASE_URL: 'postgresql://postgres:postgres@localhost:5432/postgres'
+  TURBO_TOKEN: turbotoken-oss-europe1
+  TURBO_TEAM: team_informatyzacjapwr
+
+jobs:
+  build-lint:
+    name: Admin build and lint
+    runs-on: ubuntu-latest
+    services:
+      postgres:
+        image: postgres:15
+        env:
+          POSTGRES_PASSWORD: postgres
+          POSTGRES_USER: postgres
+          POSTGRES_DB: postgres
+        ports:
+          - 5432:5432
+        options: --health-cmd pg_isready --health-interval 10s --health-timeout 5s --health-retries 5
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v3
+
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v2
+
+      - name: Setup Node
+        uses: actions/setup-node@v3
+        with:
+          node-version: 20
+          cache: 'pnpm'
+
+      - name: Install deps
+        run: pnpm install
+
+      - name: Setup GitHub Actions cache for Turbo
+        uses: dtinth/setup-github-actions-caching-for-turbo@v1
+        with:
+          cache-prefix: chatbot_
+
+      - name: Generate Prisma Client
+        run: pnpx turbo db:generate
+
+      - name: Build, lint and type-check
+        run: pnpx turbo build lint type-check
+        env:
+          SKIP_ENV_VALIDATION: true

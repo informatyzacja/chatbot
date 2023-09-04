@@ -1,0 +1,31 @@
+{
+  "name": "@informatyzacja/db",
+  "version": "0.1.0",
+  "main": "./index.ts",
+  "types": "./index.ts",
+  "license": "ISC",
+  "scripts": {
+    "clean": "rm -rf .turbo node_modules",
+    "db:generate": "prisma generate",
+    "db:push": "prisma db push",
+    "db:migrate": "prisma migrate dev",
+    "db:migrate:prod": "prisma migrate deploy",
+    "db:seed": "prisma db seed",
+    "db:studio": "prisma studio",
+    "dev": "docker compose -f docker-compose.dev.yml up --force-recreate -V"
+  },
+  "dependencies": {
+    "@prisma/client": "^5.2.0"
+  },
+  "prisma": {
+    "seed": "tsx prisma/seed.ts"
+  },
+  "devDependencies": {
+    "@faker-js/faker": "^8.0.2",
+    "dotenv-cli": "^7.3.0",
+    "prisma": "^5.2.0",
+    "slugify": "^1.6.6",
+    "tsx": "^3.12.8",
+    "typescript": "^5.2.2"
+  }
+}
