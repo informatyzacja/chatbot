@@ -6,8 +6,7 @@
     "lint": "eslint --ext .js,.ts src",
     "lint:fix": "pnpm lint --fix",
     "format": "prettier --check src",
-    "format:fix": "prettier --write src",
-    "type-check": "tsc --noEmit"
+    "format:fix": "prettier --write src"
   },
   "dependencies": {},
   "devDependencies": {}
