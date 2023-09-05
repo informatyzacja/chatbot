@@ -1,0 +1,43 @@
+version: '3.9'
+
+services:
+  admin:
+    restart: always
+    container_name: admin
+    depends_on:
+      - prisma-studio
+    ports:
+      - '3000:3000'
+    image: ghcr.io/informatyzacja/chatbot/chatbot.admin:latest
+    env_file:
+      - .env
+
+  postgres:
+    restart: always
+    container_name: postgres
+    image: postgres:15-alpine
+    environment:
+      - POSTGRES_DB=${POSTGRES_DATABASE}
+      - POSTGRES_USER=${POSTGRES_USERNAME}
+      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
+    env_file:
+      - .env
+    ports:
+      - '${POSTGRES_PORT}:5432'
+    volumes:
+      - postgres:/var/lib/postgresql/data
+
+  prisma-studio:
+    container_name: prisma-studio
+    restart: unless-stopped
+    image: ghcr.io/informatyzacja/chatbot/chatbot.prisma-studio:latest
+    depends_on:
+      - postgres
+    env_file:
+      - .env
+    ports:
+      - ${PRISMA_STUDIO_PORT}:5555
+
+volumes:
+  postgres:
+    driver: local
